@@ -1,0 +1,50 @@
+2017-08-10T14:11:27.208+0800 I CONTROL  [initandlisten] MongoDB starting : pid=17712 port=27019 dbpath=E:/1class/LastLap/vue-shop/mongodb/db 64-bit host=É§ÆøµÄµØÊó
+2017-08-10T14:11:27.222+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2017-08-10T14:11:27.222+0800 I CONTROL  [initandlisten] db version v3.4.6
+2017-08-10T14:11:27.222+0800 I CONTROL  [initandlisten] git version: c55eb86ef46ee7aede3b1e2a5d184a7df4bfb5b5
+2017-08-10T14:11:27.222+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1u-fips  22 Sep 2016
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten] modules: none
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten] build environment:
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-08-10T14:11:27.223+0800 I CONTROL  [initandlisten] options: { config: "E:\1class\LastLap\vue-shop\config\mongodb.conf", net: { http: { enabled: false }, port: 27019 }, storage: { dbPath: "E:/1class/LastLap/vue-shop/mongodb/db" }, systemLog: { destination: "file", path: "E:/1class/LastLap/vue-shop/dialog/mongodb.log" } }
+2017-08-10T14:11:27.249+0800 I -        [initandlisten] Detected data files in E:/1class/LastLap/vue-shop/mongodb/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2017-08-10T14:11:27.250+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3540M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2017-08-10T14:11:28.556+0800 I CONTROL  [initandlisten] 
+2017-08-10T14:11:28.556+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2017-08-10T14:11:28.557+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2017-08-10T14:11:28.557+0800 I CONTROL  [initandlisten] 
+2017-08-10T14:11:29.338+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'E:/1class/LastLap/vue-shop/mongodb/db/diagnostic.data'
+2017-08-10T14:11:29.351+0800 I NETWORK  [thread1] waiting for connections on port 27019
+2017-08-10T14:11:30.102+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:53709 #1 (1 connection now open)
+2017-08-10T14:11:30.125+0800 I NETWORK  [conn1] received client metadata from 127.0.0.1:53709 conn1: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:11:30.180+0800 I -        [conn1] end connection 127.0.0.1:53709 (1 connection now open)
+2017-08-10T14:11:34.335+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:53710 #2 (1 connection now open)
+2017-08-10T14:11:34.336+0800 I NETWORK  [conn2] received client metadata from 127.0.0.1:53710 conn2: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:11:34.342+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:53711 #3 (2 connections now open)
+2017-08-10T14:11:34.343+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:53712 #4 (3 connections now open)
+2017-08-10T14:11:34.343+0800 I NETWORK  [conn3] received client metadata from 127.0.0.1:53711 conn3: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:11:34.344+0800 I NETWORK  [conn4] received client metadata from 127.0.0.1:53712 conn4: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:11:34.418+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:53714 #5 (4 connections now open)
+2017-08-10T14:11:37.039+0800 I COMMAND  [conn2] command goods.goods command: collStats { collStats: "goods", scale: null } numYields:0 reslen:11355 locks:{ Global: { acquireCount: { r: 2 } }, Database: { acquireCount: { r: 1 } }, Collection: { acquireCount: { r: 1 } } } protocol:op_query 138ms
+2017-08-10T14:24:25.923+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:54142 #6 (5 connections now open)
+2017-08-10T14:24:25.927+0800 I NETWORK  [conn6] received client metadata from 127.0.0.1:54142 conn6: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:24:26.047+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:54143 #7 (6 connections now open)
+2017-08-10T14:24:26.306+0800 I COMMAND  [conn4] command goods.goods command: find { find: "goods", filter: {}, sort: { _id: -1.0 }, projection: { _id: { $slice: 1.0 } }, limit: 5.0, batchSize: 101.0 } planSummary: IXSCAN { _id: 1 } keysExamined:5 docsExamined:5 cursorExhausted:1 numYields:1 nreturned:5 reslen:802 locks:{ Global: { acquireCount: { r: 4 } }, Database: { acquireCount: { r: 2 } }, Collection: { acquireCount: { r: 2 } } } protocol:op_query 136ms
+2017-08-10T14:24:26.306+0800 I COMMAND  [conn7] command goods.goods command: find { find: "goods", filter: {}, sort: { _id: -1.0 }, projection: { _id: { $slice: 1.0 } }, limit: 5.0, batchSize: 101.0 } planSummary: IXSCAN { _id: 1 } keysExamined:5 docsExamined:5 cursorExhausted:1 numYields:1 nreturned:5 reslen:802 locks:{ Global: { acquireCount: { r: 4 } }, Database: { acquireCount: { r: 2 } }, Collection: { acquireCount: { r: 2 } } } protocol:op_query 141ms
+2017-08-10T14:24:35.410+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:54149 #8 (7 connections now open)
+2017-08-10T14:24:35.412+0800 I NETWORK  [conn8] received client metadata from 127.0.0.1:54149 conn8: { driver: { name: "nodejs", version: "2.2.24-1" }, os: { type: "Windows_NT", name: "win32", architecture: "ia32", version: "10.0.10240" }, platform: "Node.js v7.4.0, LE, mongodb-core: 2.1.10" }
+2017-08-10T14:24:35.530+0800 I NETWORK  [thread1] connection accepted from 127.0.0.1:54150 #9 (8 connections now open)
+2017-08-10T14:24:35.830+0800 I COMMAND  [conn6] command goods.goods command: find { find: "goods", filter: {}, limit: 21.0, batchSize: 101.0 } planSummary: COLLSCAN keysExamined:0 docsExamined:17 cursorExhausted:1 numYields:1 nreturned:17 reslen:2499 locks:{ Global: { acquireCount: { r: 4 } }, Database: { acquireCount: { r: 2 } }, Collection: { acquireCount: { r: 2 } } } protocol:op_query 154ms
+2017-08-10T14:41:17.491+0800 I CONTROL  [thread2] Ctrl-C signal
+2017-08-10T14:41:17.491+0800 I CONTROL  [consoleTerminate] got CTRL_C_EVENT, will terminate after current cmd ends
+2017-08-10T14:41:17.491+0800 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2017-08-10T14:41:17.491+0800 I NETWORK  [consoleTerminate] closing listening socket: 524
+2017-08-10T14:41:17.491+0800 I NETWORK  [consoleTerminate] shutdown: going to flush diaglog...
+2017-08-10T14:41:17.597+0800 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2017-08-10T14:41:17.601+0800 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2017-08-10T14:41:17.862+0800 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2017-08-10T14:41:17.862+0800 I CONTROL  [consoleTerminate] now exiting
+2017-08-10T14:41:17.862+0800 I CONTROL  [consoleTerminate] shutting down with code:12
