@@ -579,3 +579,21 @@
     padding-top: 20px;
   }
 }
+
+.load-more {
+  margin: 0 auto 9px;
+  height: 40px;
+  background: #fff;
+  box-shadow: 0 0 1px 1px rgb(233,233,233);
+  color: #777;
+  letter-spacing: .2em;
+  text-align: center;
+  line-height: 40px;
+  transition: all .3s linear 0s;
+  user-select: none;
+  cursor: pointer;
+}
+
+.load-more:hover {
+  box-shadow: 0 0 1px 1px #ee7a23;
+}

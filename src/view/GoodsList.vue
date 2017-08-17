@@ -21,7 +21,6 @@
               </dd>
             </dl>
           </div>
-
           <!-- search result accessories list -->
           <div class="accessory-list-wrap">
             <div class="accessory-list col-4">
@@ -32,13 +31,14 @@
                   </div>
                   <div class="main">
                     <div class="name">{{item.productName}}</div>
-                    <div class="price">{{item.salePrice}}</div>
+                    <div class="price">￥{{item.salePrice}}</div>
                     <div class="btn-area">
-                      <a href="javascript:;" class="btn btn--m">加入购物车</a>
+                      <a href="javascript:;" class="btn btn--m" @click="addCart(item.productId)">加入购物车</a>
                     </div>
                   </div>
                 </li>
               </ul>
+              <div class="load-more" @click="getMoreGoods" ref="loadMore">{{ loadingText  }}</div>
             </div>
           </div>
         </div>
@@ -57,7 +57,12 @@
     name: 'GoodsList',
     data () {
       return {
+        flag: 0,
         GoodsList: Array,
+        page: 0,
+        pagesize: 8,
+        pageLock: 1,
+        loadingText: '点击加载更多',
         sortFlag: 1,
         priceChecked: 'all',
         priceFilter: [
@@ -92,22 +97,64 @@
       getGoodsList () {
         let param = {
           sort: this.sortFlag ? 1 : -1,
-          priceLevel: this.priceChecked
+          priceLevel: this.priceChecked,
+          page: this.page,
+          pagesize: this.pagesize
         }
         // 直接请求API会有跨域问题
         axios.get('/goods/list', {params: param}).then((result) => {
           let data = result.data.result
-          this.GoodsList = data
+          if (!this.flag) {
+            this.GoodsList = data
+            this.flag = 1
+            if (data.length < this.pagesize) { // 当请求的数量小于数据内容的时候，按钮关闭
+              this.loadingText = '没有更多了~'
+              this.pageLock = 0
+            } else {
+              this.pageLock = 1
+              this.loadingText = '点击加载更多'
+            }
+          } else {
+            if (data.length < this.pagesize) { // 当请求的数量小于数据内容的时候，按钮关闭
+              this.loadingText = '没有更多了~'
+              this.pageLock = 0
+            }
+            this.GoodsList = this.GoodsList.concat(data)
+          }
         })
       },
       sortGoods () {
+        this.flag = 0
+        this.page = 0
         this.sortFlag = !this.sortFlag
         this.getGoodsList()
       },
       setPriceFilter (index) {
-        console.log(index)
+        this.flag = 0
+        this.page = 0
         this.priceChecked = index
         this.getGoodsList()
+      },
+      getMoreGoods () {
+        if (this.flag && this.pageLock) { // 控制按钮开关状态
+          this.page++
+          this.getGoodsList()
+        } else {
+          return
+        }
+      },
+      addCart (productId) {
+        axios.post('/goods/addCart', {
+          productId: productId
+        }).then((res) => {
+          let data = res.data
+          console.log(data)
+          if (data.status === '0') {
+            console.log('加入购物车成功')
+          } else {
+            console.log('加入购物车失败')
+          }
+        })
       }
     }
   }
