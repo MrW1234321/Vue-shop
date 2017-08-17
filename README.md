@@ -1,6 +1,8 @@
 # go go go
 
 > A Vue.js project
+> DemoÔ¤ÀÀ
+> http://push.needforfire.top/
 
 ## Build Setup
 
