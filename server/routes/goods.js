@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Goods = require('../models/goods');
 
 // 链接数据库
-mongoose.connect('mongodb://127.0.0.1:27019/shop')
+mongoose.connect('mongodb://127.0.0.1:27019/shop');
 // 当数据库连接成功的时候触发
 mongoose.connection.on('connected', function () {
   console.log('Mongodb connect success');
