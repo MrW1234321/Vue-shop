@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Goods = require('../models/goods');
 
 // 链接数据库
-mongoose.connect('mongodb://127.0.0.1:27019/shop');
+mongoose.connect('mongodb://127.0.0.1:27019/shop', {useMongoClient: true});
 // 当数据库连接成功的时候触发
 mongoose.connection.on('connected', function () {
   console.log('Mongodb connect success');
@@ -50,7 +50,16 @@ router.get('/list', function (req,res,next) {
   })
 })
 router.post('/addCart', function (req, res, next) {
-  let userId = '100000077', productId = req.body.productId;
+  if (req.cookies.userId) {
+    var userId = req.cookies.userId;
+  } else {
+    res.json({
+      status: "1",
+      msg: '用户未登录'
+    })
+  }
+
+  let productId = req.body.productId;
   var User = require('../models/users');
 
   User.findOne({userId: userId}, function (err, userDoc) {

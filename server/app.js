@@ -23,6 +23,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 访问拦截
+app.use(function (req, res, next) {
+  if (req.cookies.userId) {
+    next();
+  } else {
+    if (req.originalUrl == '/users/login' || 
+        req.originalUrl == '/users/logout' ||
+        req.originalUrl == '/users/checkLogin' || 
+        req.path == '/goods/list') {
+      next();
+    } else {
+      res.json({
+        status: "1",
+        msg: "url不合法",
+        result: ""
+      })
+    }
+  }
+})
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/goods', goods);

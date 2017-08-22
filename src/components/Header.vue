@@ -16,8 +16,9 @@
         <div class="navbar-menu-container">
           <!--<a href="/" class="navbar-link">我的账户</a>-->
           <span class="navbar-link"></span>
-          <a href="javascript:void(0)" class="navbar-link">{{ loginStatus }}</a>
-          <a href="javascript:void(0)" class="navbar-link">{{ logoutBtn }}</a>
+          <a href="javascript:void(0)" v-if="loginStatus">{{ nickName }}</a>
+          <a href="javascript:void(0)" class="navbar-link" v-if="!loginStatus" @click="loginModalFlag = true">登录</a>
+          <a href="javascript:void(0)" class="navbar-link" v-if="loginStatus" @click="logout">退出</a>
           <div class="navbar-cart-container">
             <span class="navbar-cart-count"></span>
             <a class="navbar-link navbar-cart-link" href="/#/cart">
@@ -29,16 +30,101 @@
         </div>
       </div>
     </div>
+     <!-- 登录框 -->
+    <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':loginModalFlag}">
+      <div class="md-modal-inner">
+        <div class="md-top">
+          <div class="md-title">login in</div>
+          <button class="md-close" @click="loginModalFlag = false">Close</button>
+        </div>
+        <div class="md-content">
+          <div class="confirm-tips">
+            <div class="error-wrap">
+              <span class="error error-show" v-show="errorTip">{{ errorMsg }}</span>
+            </div>
+            <ul>
+              <li class="regi_form_input">
+                <input type="text" tabindex="1" name="loginname" placeholder="User Name" v-model="userName" data-type="loginname" class="regi_login_input regi_login_input_left">
+              </li>
+              <li class="regi_form_input noMargin">
+                <i class="icon IconPwd"></i>
+                <input type="password" tabindex="2" name="password" placeholder="Password" v-model="userPwd" class="regi_login_input regi_login_input_left login-input-no input_text" @keyup.enter="login">
+              </li>
+            </ul>
+
+          </div>
+          <div class="login-wrap">
+            <a href="javascript:;" class="btn-login" @click="login">登录</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 遮罩层 -->
+    <div class="md-overlay" v-if="loginModalFlag" @click="loginModalFlag = false"></div>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'Header',
     data () {
       return {
-        loginStatus: '登录',
-        logoutBtn: '退出'
+        loginStatus: false,
+        loginModalFlag: false,
+        userName: '',
+        userPwd: '',
+        errorTip: false,
+        errorMsg: '',
+        nickName: ''
+      }
+    },
+    mounted: function () {
+      this.checkLogin()
+    },
+    methods: {
+      login () {
+        if (this.userName === '' || this.userPwd === '') {
+          this.errorMsg = '用户名或密码不能为空'
+          this.errorTip = true
+        } else {
+          this.errorTip = false
+          axios.post('/users/login', {
+            userName: this.userName,
+            userPwd: this.userPwd
+          }).then((response) => {
+            let res = response.data
+            if (res.status === '0') {
+              this.loginStatus = true
+              this.errorTip = false
+              this.loginModalFlag = false
+              this.nickName = res.result.userName
+            } else {
+              this.errorMsg = '用户名或密码错误'
+              this.errorTip = true
+            }
+          })
+        }
+      },
+      checkLogin () {
+        axios.post('/users/checkLogin').then((response) => {
+          let res = response.data
+          console.log(res)
+          if (res.status === '0') {
+            this.loginStatus = true
+            this.nickName = res.result
+          }
+        })
+      },
+      logout () {
+        axios.post('/users/logout').then((response) => {
+          let res = response.data
+          if (res.status === '0') {
+            this.loginStatus = false
+            this.nickName = ''
+            this.userPwd = ''
+          }
+        })
       }
     }
   }

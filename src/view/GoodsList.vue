@@ -5,8 +5,8 @@
     <div class="accessory-result-page accessory-page">
       <div class="container">
         <div class="filter-nav">
-          <span class="sortby">Sort by:</span>
-          <a href="javascript:void(0)" class="default cur">Default</a>
+          <span class="sortby">排序</span>
+          <a href="javascript:void(0)" class="default cur">默认</a>
           <a href="javascript:void(0)" class="price" @click="sortGoods">价格 <svg class="icon icon-arrow-short"><use xlink:href="#icon-arrow-short"></use></svg></a>
           <a href="javascript:void(0)" class="filterby stopPop">Filter by</a>
         </div>
@@ -43,6 +43,24 @@
           </div>
         </div>
       </div>
+      <!-- 模态框 -->
+      <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':mdShow}">
+        <div class="md-modal-inner">
+          <div class="md-top">
+            <div class="md-title">信息提示</div>
+            <button class="md-close" @click="mdShow = false">关闭</button>
+          </div>
+          <div class="md-content">
+            <div class="confirm-tips">
+                <slot name="message">请先登录</slot>
+            </div>
+            <div class="btn-wrap">
+                <slot name="btnGroup">关闭</slot>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md-overlay" v-show="mdShow" @click="mdShow = false"></div>
     </div>
     <nav-footer></nav-footer>
   </div>
@@ -65,6 +83,7 @@
         loadingText: '点击加载更多',
         sortFlag: 1,
         priceChecked: 'all',
+        mdShow: false,
         priceFilter: [
           {
             startPrice: '0',
@@ -144,15 +163,17 @@
         }
       },
       addCart (productId) {
+        // 购物车接口
         axios.post('/goods/addCart', {
           productId: productId
         }).then((res) => {
           let data = res.data
-          console.log(data)
+          if (data.status === '1') {
+            this.mdShow = true
+            console.log('加入购物车失败')
+          }
           if (data.status === '0') {
             console.log('加入购物车成功')
-          } else {
-            console.log('加入购物车失败')
           }
         })
       }
