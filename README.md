@@ -2,7 +2,7 @@
 
 > A Vue.js project
 
-> Demo preview (nder maintenance)
+> Demo preview (under maintenance)
 
 > http://push.needforfire.top/
 
