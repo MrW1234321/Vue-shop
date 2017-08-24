@@ -28,7 +28,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 商品展示以及排序
 
-> 用户登录
+> 用户登录 （账号：admin 密码：123456）
 
 ## 将要实现功能
 
