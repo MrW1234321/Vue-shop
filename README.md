@@ -1,12 +1,12 @@
-# go go go
+# 基于Vue搭建的商城
 
-> A Vue.js project
+> 什么都好就是有点丑
 
-> Demo preview (under maintenance)
+> DEMO 预览
 
 > http://push.needforfire.top/
 
-## Build Setup
+## 安装搭建
 
 ``` bash
 # install dependencies
@@ -23,3 +23,17 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## 已实现功能
+
+> 商品展示以及排序
+
+> 用户登录
+
+## 将要实现功能
+
+> 注册
+
+> 购物车
+
+> 样式重置
