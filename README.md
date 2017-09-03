@@ -30,6 +30,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 用户登录 （账号：admin 密码：123456）
 
+> 全局封装模态框
+
 ## 将要实现功能
 
 > 注册
