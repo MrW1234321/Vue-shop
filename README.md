@@ -26,7 +26,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## 已实现功能
 
-> 商品展示以及排序
+> 商品展示（懒加载、排序）
 
 > 用户登录 （账号：admin 密码：123456）
 
@@ -34,8 +34,14 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## 将要实现功能
 
-> 注册
+> 商品搜索
+
+> 商品详情页
 
 > 购物车
+
+> 注册
+
+> 个人信息页
 
 > 样式重置
