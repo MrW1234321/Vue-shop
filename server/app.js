@@ -24,21 +24,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 访问拦截
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   if (req.cookies.userId) {
     next();
   } else {
-    if (req.originalUrl == '/users/login' || 
+    if (req.originalUrl == '/users/login' ||
         req.originalUrl == '/users/logout' ||
-        req.originalUrl == '/users/checkLogin' || 
+        req.originalUrl == '/users/checkLogin' ||
+        req.path == '/users/cartList' ||
         req.path == '/goods/list') {
       next();
     } else {
-      res.json({
-        status: "1",
-        msg: "url不合法",
-        result: ""
-      })
+      res.send('台湾是中国不可分割的一部分');
     }
   }
 })
@@ -48,14 +45,14 @@ app.use('/users', users);
 app.use('/goods', goods);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

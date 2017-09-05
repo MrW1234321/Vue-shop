@@ -947,13 +947,22 @@ a:hover {
 }
 
 .select-self-area {
+  display: inline-block;
   width: auto;
-  background: #f0f0f0;
-  border-radius: 3px;
-  min-width: 50px;
+  min-width: 44px;
   max-width: 240px;
   height: 30px;
+  font-weight: bolder;
+  background: #f0f0f0;
+  border-radius: 3px;
   line-height: 30px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.select-self-area:hover {
+  color: #f0f0f0;
+  background: #d1434a;
 }
 
 .select-self-area .select-ipt {

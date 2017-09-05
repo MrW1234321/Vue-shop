@@ -32,13 +32,15 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 全局封装模态框
 
+> 购物车 （静态页面）
+
 ## 将要实现功能
 
 > 商品搜索
 
 > 商品详情页
 
-> 购物车
+> 购物车 （动态修改）
 
 > 注册
 
