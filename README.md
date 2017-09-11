@@ -32,7 +32,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 全局封装模态框
 
-> 购物车 （静态页面）
+> 购物车 （静态页面、增删减）
 
 ## 将要实现功能
 
@@ -40,7 +40,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 > 商品详情页
 
-> 购物车 （动态修改）
+> 购物车 （多选框、结算）
 
 > 注册
 

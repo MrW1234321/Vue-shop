@@ -54,7 +54,7 @@
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
                     <a href="javascript:;" class="item-edit-btn">
-                      <svg class="icon icon-del" @click="removeItem(item)">
+                      <svg class="icon icon-del" @click="removeItem(item, index)">
                         <use xlink:href="#icon-del"></use>
                       </svg>
                     </a>
@@ -150,7 +150,6 @@
       getCartList () {
         axios.post('/users/cartList').then((result) => {
           this.cartList = result.data.result
-          console.log(this.cartList)
         })
       },
       editNum (item, flag) {
@@ -166,8 +165,10 @@
           }
         }
       },
-      removeItem (item) {
-        axios.post('/users/cartList/removeItem', {productId: item.productId})
+      removeItem (item, index) {
+        axios.post('/users/cartList/removeItem', {productId: item.productId}).then((response) => {
+          this.cartList.splice(index, 1)
+        })
       }
     }
   }
