@@ -265,7 +265,8 @@ html {
   padding: 0 10px; }
 
 .cart-item-list {
-  display: table-row-group; }
+  display: table-row-group;
+  user-select: none; }
 .cart-item-list > li {
   position: relative;
   display: table-row;
@@ -440,6 +441,10 @@ html {
 .order-item .select-self-area .select-ipt {
   padding: 0;
   text-align: center; }
+
+.select-ipt {
+  display: inline-block;
+  width: 17px; }
 
 @media only screen and (max-width: 991px) {
   .cart-item {

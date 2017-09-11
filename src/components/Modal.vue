@@ -4,7 +4,6 @@
     <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':mdShow}">
       <div class="md-modal-inner">
         <div class="md-top">
-          <div class="md-title">信息提示</div>
           <slot name="closeBtn"></slot>
         </div>
         <div class="md-content">

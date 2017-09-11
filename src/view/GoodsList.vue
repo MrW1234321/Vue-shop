@@ -170,13 +170,12 @@
           productId: productId
         }).then((res) => {
           let data = res.data
-          if (data.status === '1') {
-            this.mdShow = true
-            console.log('加入购物车失败')
-          }
           if (data.status === '0') {
             this.mdShowCart = true
             console.log('加入购物车成功')
+          } else {
+            this.mdShow = true
+            console.log('加入购物车失败')
           }
         })
       }

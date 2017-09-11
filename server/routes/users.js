@@ -10,8 +10,8 @@ var User = require('../models/users');
 //   }
 //   if (param.userName === '' || param.userPwd === '') {
 //     res.json({
-//       status: "1",
-//       msg: "用户名或密码不能为空"
+//       status: '1',
+//       msg: '用户名或密码不能为空'
 //     })
 //     return;
 //   }
@@ -103,13 +103,12 @@ router.post('/logout', (req, res, next) => {
     result: '退出成功'
   })
 })
-
+// 购物车列表显示
 router.post('/cartList', (req, res, next) => {
   // 此处有安全漏洞，如果某个用户修改了cookies中的Id，便可以轻松获取别人的购物车列表
   // 以后需要增加一个与服务器端的验证
   let userId = req.cookies.userId;
   User.findOne({userId: userId}, (err, doc) => {
-    console.log(doc);
     if (err) {
       res.json({
         status: '1',
@@ -131,10 +130,63 @@ router.post('/cartList', (req, res, next) => {
     }
   })
 })
-
-router.post('/cartList/ editNum', (req, res, next) => {
+// 购物车列表更新
+router.post('/cartList/editNum', (req, res, next) => {
   let userId = req.cookies.userId;
-  let productId = req.param('productId');
+  let productId = req.body.productId;
+  let productNum = req.body.productNum;
+
+  User.update({'userId': userId, 'cartList.productId': productId}, {
+    'cartList.$.productNum': productNum
+  }, (err, doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        msg: err.message,
+        result: ''
+      })
+    }
+    if (doc === null) {
+      res.json({
+        status: '1',
+        msg: '',
+        result: '商品无法更新'
+      })
+    } else {
+      res.json({
+        status: '0',
+        msg: '',
+        result: '商品更新成功'
+      })
+    }
+  })
+})
+// 删除商品
+router.post('/cartList/removeItem', (req, res, next) => {
+  let userId = req.cookies.userId;
+  let productId = req.body.productId;
+
+  User.update({'userId': userId}, {
+    $pull: {
+      'cartList': {
+        'productId': productId
+      }
+    }
+  }, (err,doc) => {
+    if (err) {
+      res.json({
+        status: '1',
+        msg: err.message,
+        result: ''
+      })
+    } else {
+      res.json({
+        status: '0',
+        msg: '',
+        result: '商品删除成功'
+      })
+    }
+  })
 })
 
 router.get('*', (req, res, next) => {

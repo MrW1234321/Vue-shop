@@ -19,52 +19,43 @@
           <a href="javascript:void(0)" v-if="loginStatus">{{ nickName }}</a>
           <a href="javascript:void(0)" class="navbar-link" v-if="!loginStatus" @click="loginModalFlag = true">登录</a>
           <a href="javascript:void(0)" class="navbar-link" v-if="loginStatus" @click="logout">退出</a>
-          <div class="navbar-cart-container">
+          <div class="navbar-cart-container" v-if="loginStatus">
             <span class="navbar-cart-count"></span>
-            <a class="navbar-link navbar-cart-link" href="/cart">
+            <router-link class="navbar-link navbar-cart-link" to="/cart">
               <svg class="navbar-cart-logo">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart"></use>
               </svg>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
      <!-- 登录框 -->
-    <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':loginModalFlag}">
-      <div class="md-modal-inner">
-        <div class="md-top">
-          <div class="md-title">login in</div>
-          <button class="md-close" @click="loginModalFlag = false">Close</button>
+    <modal :mdShow="loginModalFlag">
+      <button slot="closeBtn" class="md-close" @click="loginModalFlag = false"></button>
+      <div slot="message">
+        <div class="error-wrap">
+          <span class="error error-show" v-show="errorTip">{{ errorMsg }}</span>
         </div>
-        <div class="md-content">
-          <div class="confirm-tips">
-            <div class="error-wrap">
-              <span class="error error-show" v-show="errorTip">{{ errorMsg }}</span>
-            </div>
-            <ul>
-              <li class="regi_form_input">
-                <input type="text" tabindex="1" name="loginname" placeholder="User Name" v-model="userName" data-type="loginname" class="regi_login_input regi_login_input_left">
-              </li>
-              <li class="regi_form_input noMargin">
-                <i class="icon IconPwd"></i>
-                <input type="password" tabindex="2" name="password" placeholder="Password" v-model="userPwd" class="regi_login_input regi_login_input_left login-input-no input_text" @keyup.enter="login">
-              </li>
-            </ul>
-
-          </div>
-          <div class="login-wrap">
-            <a href="javascript:;" class="btn-login" @click="login">登录</a>
-          </div>
-        </div>
+        <ul>
+          <li class="regi_form_input">
+            <input type="text" tabindex="1" name="loginname" placeholder="User Name" v-model="userName" data-type="loginname" class="regi_login_input regi_login_input_left">
+          </li>
+          <li class="regi_form_input noMargin">
+            <i class="icon IconPwd"></i>
+            <input type="password" tabindex="2" name="password" placeholder="Password" v-model="userPwd" class="regi_login_input regi_login_input_left login-input-no input_text" @keyup.enter="login">
+          </li>
+        </ul>
       </div>
-    </div>
-    <!-- 遮罩层 -->
-    <div class="md-overlay" v-if="loginModalFlag" @click="loginModalFlag = false"></div>
+      <div slot="btnGroup">
+        <a href="javascript:;" class="btn-login" @click="login">登录</a>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
+  import Modal from '@/components/Modal'
   import axios from 'axios'
   export default {
     name: 'Header',
@@ -78,6 +69,9 @@
         errorMsg: '',
         nickName: ''
       }
+    },
+    components: {
+      Modal
     },
     mounted: function () {
       this.checkLogin()

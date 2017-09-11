@@ -17,6 +17,7 @@ mongoose.connection.on('error', function () {
 mongoose.connection.on('disconnected', function () {
   console.log('Mongodb disconnect');
 })
+// 商品显示
 router.get('/list', function (req,res,next) {
   let page = req.param('page');
   let pagesize = parseInt(req.param('pagesize'));
@@ -49,14 +50,17 @@ router.get('/list', function (req,res,next) {
     })
   })
 })
+// 添加到购物车
 router.post('/addCart', function (req, res, next) {
   if (req.cookies.userId) {
     var userId = req.cookies.userId;
+    console.log('测试');
   } else {
+    console.log('测试2');
     res.json({
       status: "1",
       msg: '用户未登录'
-    })
+    });
   }
 
   let productId = req.body.productId;
@@ -107,5 +111,6 @@ router.post('/addCart', function (req, res, next) {
     }
   })
 })
+
 
 module.exports = router;
